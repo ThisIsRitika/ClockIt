@@ -38,5 +38,25 @@ function completeTask(task,user){
 
 //update streak 
 function updateStreak(user){
+    if(user.lastCompletedDate==null){
+        user.lastCompletedDate=today
+        user.streak=1
+        return
+    }
 
+    if(user.lastCompletedDate.toDateString()==yesterday.toDateString()){
+        user.streak++
+        user.lastCompletedDate=today
+        return
+    }
+
+    if(user.lastCompletedDate.toDateString()==today.toDateString()) return
+
+    user.streak=1
+    user.lastCompletedDate=today
+}
+
+//delete task
+function deleteTask(tasks,id){
+    return tasks.filter(task => task.id !== id)
 }
